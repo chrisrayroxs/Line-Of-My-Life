@@ -1,0 +1,233 @@
+@bg-color: #666666;
+@master-font: #1a1a1a;
+@base: #222222;
+
+@mainColour: #309ed6;
+ 
+body {
+	color: @master-font;
+	background: @bg-color;
+}
+
+/** Standard Styles **/
+body {
+	background: @base;
+	text-align:left;
+	font-size:14px;
+	font-family:georgia, 'time new romans', serif;
+	margin:0 auto;
+	padding:0;
+}
+blockquote {
+	border: 2px solid @mainColour;
+}
+
+/** Main Divs **/
+#header {
+	height:40px;
+}
+#topMenuButtons {
+	float:right;
+	margin:12px 50px 0 0;
+}
+#editor {
+	border:solid #a3f1ff 2px;
+	position:absolute;
+}
+#container {
+	clear:both;
+	margin:0;
+	padding:0;
+	width:1000px;
+	margin: 20px auto;
+}
+
+#container a {
+	float:right;
+	background:#9FC54E;
+	border:1px solid #9FC54E;
+	-moz-border-radius-topright:20px;
+	-webkit-border-top-right-radius:20px;
+	-moz-border-radius-bottomleft:20px;
+	-webkit-border-bottom-left-radius:20px;
+	text-decoration:none;
+	font-size:16px;
+	letter-spacing:-1px;
+	font-family:verdana, helvetica, arial, sans-serif;
+	color:#fff;
+	font-weight:700;
+	padding:20px;
+}
+
+#container a:hover {
+	float:right;
+	background:#a0a0a0;
+	border:1px solid #ccc;
+	-moz-border-radius-topright:20px;
+	-webkit-border-top-right-radius:20px;
+	-moz-border-radius-bottomleft:20px;
+	-webkit-border-bottom-left-radius:20px;
+	text-decoration:none;
+	font-size:16px;
+	letter-spacing:-1px;
+	font-family:verdana, helvetica, arial, sans-serif;
+	color:#fff;
+	font-weight:700;
+	padding:20px;
+}
+
+.content {
+	font-style:normal;
+	font-family:helvetica, arial, verdana, sans-serif;
+	color:#fff;
+	background:#333;
+	border:1px solid #444;
+	-moz-border-radius-topright:20px;
+	-webkit-border-top-right-radius:20px;
+	-moz-border-radius-bottomleft:20px;
+	-webkit-border-bottom-left-radius:20px;
+	margin:30px 0 50px;
+	padding:15px 0;
+}
+
+.content p {
+	margin:10px 0;
+	padding:15px 20px;
+}
+
+
+/** Toolbars **/
+#drawingTools {
+	background:#222;
+	width:200px;
+	min-height:300px;
+	position:absolute;
+	cursor:move;
+	display:none;
+	right:0;
+	top:100px;
+	padding:20px;
+	border-radius: 20px;
+}
+#drawingTools .close {
+	padding:10px;
+	background:#F00;
+	float:right;
+	border-radius:12px
+}
+#drawingTools li {
+	display: block;
+	float:left;	
+}
+#drawingTools ul {
+	float:left;
+}
+#textTools {
+	background:#222;
+	width:200px;
+	min-height:300px;
+	position:absolute;
+	cursor:move;
+	display:none;
+	right:0;
+	top:100px;
+	padding:20px;
+	border-radius: 20px;
+}
+#textTools .close {
+	padding:10px;
+	background:#F00;
+	float:right;
+	border-radius:12px
+}
+#textTools li {
+	display: block;
+	float:left;	
+}
+#textTools ul {
+	float:left;
+}
+#shapeTools {
+	background:#222;
+	width:200px;
+	min-height:300px;
+	position:absolute;
+	cursor:move;
+	display:none;
+	right:0;
+	top:100px;
+	padding:20px;
+	border-radius: 20px;
+}
+#shapeTools .close {
+	padding:10px;
+	background:#F00;
+	float:right;
+	border-radius:12px
+}
+#shapeTools li {
+	display: block;
+	float:left;	
+}
+#shapeTools ul {
+	float:left;
+}
+#graphTools {
+	background:#222;
+	width:200px;
+	min-height:300px;
+	position:absolute;
+	cursor:move;
+	display:none;
+	right:0;
+	top:100px;
+	padding:20px;
+	border-radius: 20px;
+}
+#graphTools .close {
+	padding:10px;
+	background:#F00;
+	float:right;
+	border-radius:12px
+}
+#graphTools li {
+	display: block;
+	float:left;	
+}
+#graphTools ul {
+	float:left;
+}
+
+
+
+
+.box-shadow (@x: 0, @y: 0, @blur: 1px, @alpha) {
+  @val: @x @y @blur rgba(0, 0, 0, @alpha);
+
+  box-shadow:         @val;
+  -webkit-box-shadow: @val;
+  -moz-box-shadow:    @val;
+}
+.box { @base: #f938ab;
+  color:        saturate(@base, 5%);
+  border-color: lighten(@base, 30%);
+  div { .box-shadow(0, 0, 5px, 0.4) }
+}
+.roundedBox( @borderRadius, @borderColour ) {
+  border: 2px solid @borderColour;
+  background-color: #eee;
+  -moz-border-radius: @borderRadius;
+  -webkit-border-radius: @borderRadius;
+  border-radius: @borderRadius;
+  padding: 10px;
+}
+ 
+blockquote {
+  font-size: 1.5em;
+  .roundedBox( 5px, #6c6 );
+}
+ 
+.promo {
+  width: 10em;
+  .roundedBox( 10px, #fa6 );
+}
