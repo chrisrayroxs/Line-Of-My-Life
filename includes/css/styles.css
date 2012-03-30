@@ -1,17 +1,12 @@
 
 
 .timeLine {
-	height:800px;
-	width:800px;
+	min-height:400px;
 	background:#eee;
 	position:relative;
 }
-
-.span5 h1{
-	color:#fff;
-}
-.span11 {
-	width:800px;
+.span3 h1{
+	margin:16px 0 0 10px;
 }
 .span5 {
 	margin:20px;
@@ -19,13 +14,20 @@
 	border-radius:0 20px 20px 0;
 	padding:10px;
 }
-table td {
+table td, th {
     border: 1px solid #DDDDDD;
+}
+table td:hover {
+    background:#eaf5ff;
+}
+table th:hover {
+    background:#f3f3f3;
 }
 table {
 	width:80%;
 	margin: 0 auto;
 	border-radius:10px;
+	float:left;
 }
 .tableCell td  {
 	
@@ -61,3 +63,4 @@ table td  {
 	margin:10px;
 	padding:5px;
 	background: url(../images/transparentBack.jpg) repeat;
+}
