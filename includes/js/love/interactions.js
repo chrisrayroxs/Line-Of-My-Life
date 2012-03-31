@@ -25,6 +25,8 @@ function createTimeline() {
             y2: p2y + dy2
         };
     }
+    
+    /*
     // Grab the data
     var labels = [],
         data = [];
@@ -34,7 +36,23 @@ function createTimeline() {
     $("#data tbody td").each(function () {
         data.push($(this).html());
     });
-    
+    */
+   
+   // Grab the data
+    var labels = [],
+        data = [],
+        description = [];
+        
+    $(".eDate").each(function () {
+        labels.push($(this).html());
+    });
+    $(".eValue").each(function () {
+        data.push($(this).html());
+    });
+    $(".eDescription").each(function () {
+        description.push($(this).html());
+    });
+   
     // Draw
    var w = $(window).width();
     var width = w,
@@ -61,7 +79,7 @@ function createTimeline() {
     label.push(r.text(60, 12, "24 hits").attr(txt));
     label.push(r.text(60, 27, "22 September 2008").attr(txt1).attr({fill: color}));
     label.hide();
-    var frame = r.popup(100, 100, label, "right").attr({fill: "#000", stroke: "#666", "stroke-width": 2, "fill-opacity": .7}).hide();
+    var frame = r.popup(100, 100, label, "right").attr({fill: "#FFF", stroke: "#666", "stroke-width": 2, "fill-opacity": .7}).hide();
 
     var p, bgpp;
     for (var i = 0, ii = labels.length; i < ii; i++) {
@@ -84,7 +102,8 @@ function createTimeline() {
         var dot = r.circle(x, y, 4).attr({fill: "#333", stroke: color, "stroke-width": 2});
         blanket.push(r.rect(leftgutter + X * i, 0, X, height - bottomgutter).attr({stroke: "none", fill: "#fff", opacity: 0}));
         var rect = blanket[blanket.length - 1];
-        (function (x, y, data, lbl, dot) {
+        
+        (function (x, y, data, lbl, description, dot) {
             var timer, i = 0;
             rect.hover(function () {
                 clearTimeout(leave_timer);
@@ -99,9 +118,11 @@ function createTimeline() {
                     }, 200 * is_label_visible);
                 lx = label[0].transform()[0][1] + ppp.dx;
                 ly = label[0].transform()[0][2] + ppp.dy;
+                
                 frame.show().stop().animate(anim);
-                label[0].attr({text: data + " hit" + (data == 1 ? "" : "s")}).show().stop().animateWith(frame, anim, {transform: ["t", lx, ly]}, 200 * is_label_visible);
-                label[1].attr({text: lbl + " September 2008"}).show().stop().animateWith(frame, anim, {transform: ["t", lx, ly]}, 200 * is_label_visible);
+                label[0].attr({text: data + (data == 1 ? "" : "s")}).show().stop().animateWith(frame, anim, {transform: ["t", lx, ly]}, 200 * is_label_visible);
+                label[1].attr({text: description }).show().stop().animateWith(frame, anim, {transform: ["t", lx, ly]}, 200 * is_label_visible);
+                
                 dot.attr("r", 6);
                 is_label_visible = true;
             }, function () {
@@ -113,7 +134,7 @@ function createTimeline() {
                     is_label_visible = false;
                 }, 1);
             });
-        })(x, y, data[i], labels[i], dot);
+        })(x, y, data[i], labels[i], description[i], dot);
     }
     p = p.concat([x, y, x, y]);
     bgpp = bgpp.concat([x, y, x, y, "L", x, height - bottomgutter, "z"]);

@@ -15,7 +15,6 @@
 	<script type="text/javascript" src="includes/js/libs/svg.js"></script>
 		<!-- Build -->
 	<script type="text/javascript" src="includes/js/love/build.js"></script>
-	<script type="text/javascript" src="includes/js/love/tools.js"></script>
 	<script type="text/javascript" src="includes/js/love/interactions.js"></script>
 	
 		<!-- Raphael -->
@@ -23,11 +22,7 @@
     <script type="text/javascript" src="includes/js/libs/raphael.draggable.js"></script>
 
     <script src="http://raphaeljs.com/popup.js"></script>
-	<script type="text/javascript">
-		$(document).ready(function() {
-			alert("This app is in its pre-alpha version and is still in development. This is only a preview. \nI really appreciate your interest! Check out the repo on github /chrisrayroxs/Line-Of-My-Life");
-		});
-	</script>
+
  	<noscript>Joteee requires JavaScript to be enabled in your browser to work properly.</noscript>
  
 </head>
@@ -41,39 +36,46 @@
 		</div>
     </div>
     <div class="span16">
-    	<!--
+    	
         <table id="data">
 			<tfoot>
-			<tr>
-			<th class="tableCell">1</th>
-			<th class="tableCell">2</th>
-			<th class="tableCell">3</th>
-			<th class="tableCell">4</th>
-			<th class="tableCell">5</th>
-			<th class="tableCell">6</th>
-			</tr>
+				<tr>
+					<th class="eDate">1</th>
+					<th class="eDate">2</th>
+					<th class="eDate">3</th>
+					<th class="eDate">4</th>
+					<th class="eDate">5</th>
+					<th class="eDate">6</th>
+				</tr>
 			</tfoot>
 			<tbody>
-			<tr>
-			<td class="tableCell">24</td>
-			<td class="tableCell">23</td>
-			<td class="tableCell">33</td>
-			<td class="tableCell">44</td>
-			<td class="tableCell">12</td>
-			<td class="tableCell">23</td>
-			</tr>
+				<tr>
+					<td class="eDescription">ValuValueValuee</td>
+					<td class="eDescription">Value</td>
+					<td class="eDescription">ValValueue</td>
+					<td class="eDescription">ValValueValueValueue</td>
+					<td class="eDescription">Value</td>
+					<td class="eDescription">Value</td>
+				</tr>
+				<tr>
+					<td class="eValue">20</td>
+					<td class="eValue">20</td>
+					<td class="eValue">20</td>
+					<td class="eValue">20</td>
+					<td class="eValue">20</td>
+					<td class="eValue">20</td>
+				</tr>
 			</tbody>
 		</table> 
-		-->
+		
 	</div>
    </div>
-
+		
 <div class="container-fluid">
 <div class="row-fluid">
     <div class="span3">
     	 <h1>Timeline</h1>
 		<input type="button" class="addtabletitle" onclick="createTimeline()" value="Plot Lifeline"/>
-		<input type="button" class="addtabletitle" onclick="updateTimeline()" value="Update"/>
     </div>
     <div class="span15">
     	<div class="timeLine">
