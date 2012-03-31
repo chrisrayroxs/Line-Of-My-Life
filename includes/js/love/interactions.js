@@ -1,23 +1,10 @@
 /* Main page interactions */
 /*  
  * by Christopher Reynolds
+ * thanks to ** raphael -> raphaeljs.com
  *  */
 
 function createTimeline() {
-		
-	Raphael.fn.drawGrid = function (x, y, w, h, wv, hv, color) {
-    color = color || "#000";
-    var path = ["M", Math.round(x) + .5, Math.round(y) + .5, "L", Math.round(x + w) + .5, Math.round(y) + .5, Math.round(x + w) + .5, Math.round(y + h) + .5, Math.round(x) + .5, Math.round(y + h) + .5, Math.round(x) + .5, Math.round(y) + .5],
-        rowHeight = h / hv,
-        columnWidth = w / wv;
-    for (var i = 1; i < hv; i++) {
-        path = path.concat(["M", Math.round(x) + .5, Math.round(y + i * rowHeight) + .5, "H", Math.round(x + w) + .5]);
-    }
-    for (i = 1; i < wv; i++) {
-        path = path.concat(["M", Math.round(x + i * columnWidth) + .5, Math.round(y) + .5, "V", Math.round(y + h) + .5]);
-    }
-    return this.path(path.join(",")).attr({stroke: color});
-	};
 
     function getAnchors(p1x, p1y, p2x, p2y, p3x, p3y) {
         var l1 = (p2x - p1x) / 2,
@@ -49,7 +36,8 @@ function createTimeline() {
     });
     
     // Draw
-    var width = 800,
+   var w = $(window).width();
+    var width = w,
         height = 250,
         leftgutter = 30,
         bottomgutter = 20,
@@ -63,8 +51,7 @@ function createTimeline() {
         X = (width - leftgutter) / labels.length,
         max = Math.max.apply(Math, data),
         Y = (height - bottomgutter - topgutter) / max;
-    r.drawGrid(leftgutter + X * .5 + .5, topgutter + .5, width - leftgutter - X, height - topgutter - bottomgutter, 10, 10, "#000");
-    var path = r.path().attr({stroke: color, "stroke-width": 4, "stroke-linejoin": "round"}),
+     var path = r.path().attr({stroke: color, "stroke-width": 4, "stroke-linejoin": "round"}),
         bgp = r.path().attr({stroke: "none", opacity: .3, fill: color}),
         label = r.set(),
         lx = 0, ly = 0,

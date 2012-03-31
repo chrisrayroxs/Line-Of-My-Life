@@ -21,10 +21,13 @@
 		<!-- Raphael -->
     <script type="text/javascript" src="includes/js/libs/raphael-min.js"></script>
     <script type="text/javascript" src="includes/js/libs/raphael.draggable.js"></script>
-    
-            <script src="http://raphaeljs.com/popup.js"></script>
-     
 
+    <script src="http://raphaeljs.com/popup.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			alert("This app is in its pre-alpha version and is still in development. This is only a preview. \nI really appreciate your interest! Check out the repo on github /chrisrayroxs/Line-Of-My-Life");
+		});
+	</script>
  	<noscript>Joteee requires JavaScript to be enabled in your browser to work properly.</noscript>
  
 </head>
@@ -32,85 +35,36 @@
 <div class="row">
     <div class="span3">
     	  <h1>Events</h1>
+    	  <div class="buttons">
+		  <input type="text" style="width:36px;height:20px;font-size:14px; padding:2px;"  class="valueinput" id="numColumns" onclick="this.value='';" onfocus="this.select()" onblur="this.value=!this.value?'Cols':this.value;" value="Cols"/>
+          <input type="button" class="addtabletitle" onclick="createDynamicTable('table', document.getElementById('numColumns').value)" value="Create Table"/><br>
+		</div>
     </div>
     <div class="span16">
     	<!--
         <table id="data">
-            <tfoot>
-                <tr>
-                    <th>1</th>
-                    <th>2</th>
-                    <th>3</th>
-                    <th>4</th>
-                    <th>5</th>
-                    <th>6</th>
-                    <th>7</th>
-                    <th>8</th>
-                    <th>9</th>
-                    <th>10</th>
-                    <th>11</th>
-                    <th>12</th>
-                    <th>13</th>
-                    <th>14</th>
-                    <th>15</th>
-                    <th>16</th>
-                    <th>17</th>
-                    <th>18</th>
-                    <th>19</th>
-                    <th>19</th>
-                    <th>20</th>
-                    <th>22</th>
-                    <th>23</th>
-                    <th>24</th>
-                    <th>25</th>
-                    <th>26</th>
-                    <th>27</th>
-                    <th>28</th>
-                    <th>29</th>
-                    <th>30</th>
-                    <th>31</th>
-                </tr>
-            </tfoot>
-            <tbody>
-                <tr>
-                    <td>8</td>
-                    <td>25</td>
-                    <td>27</td>
-                    <td>25</td>
-                    <td>54</td>
-                    <td>59</td>
-                    <td>79</td>
-                    <td>47</td>
-                    <td>27</td>
-                    <td>44</td>
-                    <td>44</td>
-                    <td>51</td>
-                    <td>56</td>
-                    <td>83</td>
-                    <td>12</td>
-                    <td>91</td>
-                    <td>52</td>
-                    <td>12</td>
-                    <td>40</td>
-                    <td>8</td>
-                    <td>60</td>
-                    <td>29</td>
-                    <td>7</td>
-                    <td>33</td>
-                    <td>56</td>
-                    <td>25</td>
-                    <td>1</td>
-                    <td>78</td>
-                    <td>70</td>
-                    <td>68</td>
-                    <td>2</td>
-                </tr>
-            </tbody>
-        </table> -->
-    	<div class="buttons">
-		  <input type="text" style="width:36px;height:20px;font-size:14px; padding:2px;"  class="valueinput" id="numColumns" onclick="this.value='';" onfocus="this.select()" onblur="this.value=!this.value?'Cols':this.value;" value="Cols"/>
-          <input type="button" class="addtabletitle" onclick="createDynamicTable('table', document.getElementById('numColumns').value)" value="Create Table"/><br>
-		</div>
+			<tfoot>
+			<tr>
+			<th class="tableCell">1</th>
+			<th class="tableCell">2</th>
+			<th class="tableCell">3</th>
+			<th class="tableCell">4</th>
+			<th class="tableCell">5</th>
+			<th class="tableCell">6</th>
+			</tr>
+			</tfoot>
+			<tbody>
+			<tr>
+			<td class="tableCell">24</td>
+			<td class="tableCell">23</td>
+			<td class="tableCell">33</td>
+			<td class="tableCell">44</td>
+			<td class="tableCell">12</td>
+			<td class="tableCell">23</td>
+			</tr>
+			</tbody>
+		</table> 
+		-->
 	</div>
    </div>
 

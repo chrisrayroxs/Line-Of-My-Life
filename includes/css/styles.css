@@ -1,9 +1,21 @@
+/*   
+ * Lifeline styles
+ * by Christopher Reynolds
+ *   */
 
-
+body {
+	background:#eaf5ff;
+}
 .timeLine {
-	min-height:400px;
-	background:#eee;
-	position:relative;
+	
+}
+input[type="button"], input[type="reset"], input[type="submit"] {
+    height: 30px;
+}
+.row {
+    border-bottom:solid #ddd 1px;
+    padding-bottom:20px;
+    background:#cde1f4;
 }
 .span3 h1{
 	margin:16px 0 0 10px;
@@ -14,11 +26,15 @@
 	border-radius:0 20px 20px 0;
 	padding:10px;
 }
+table {
+	
+}
 table td, th {
-    border: 1px solid #DDDDDD;
+    border: 1px solid #98c4ec;
+    height: 30px;
 }
 table td:hover {
-    background:#eaf5ff;
+    background:#fff;
 }
 table th:hover {
     background:#f3f3f3;
