@@ -31,7 +31,7 @@
     <div class="span3">
     	  <h1>Events</h1>
     	  <div class="buttons">
-		  <input type="text" style="width:36px;height:20px;font-size:14px; padding:2px;"  class="valueinput" id="numColumns" onclick="this.value='';" onfocus="this.select()" onblur="this.value=!this.value?'Cols':this.value;" value="Cols"/>
+		  <input type="text" style="width:92px;"  class="valueinput" id="numColumns" onclick="this.value='';" onfocus="this.select()" onblur="this.value=!this.value?'Columns':this.value;" value="Columns"/>
           <input type="button" class="addtabletitle" onclick="createDynamicTable('table', document.getElementById('numColumns').value)" value="Create Table"/><br>
 		</div>
     </div>
@@ -75,10 +75,16 @@
 <div class="row-fluid">
     <div class="span3">
     	 <h1>Timeline</h1>
-		<input type="button" class="addtabletitle" onclick="createTimeline()" value="Plot Lifeline"/>
+    	 <div id="timelineOptions">
+    	 	<ul>
+				<li><input type="button" class="plot" onclick="createTimeline()" value="Plot Lifeline"/></li>
+		    	<li><input type="text" class="newEvent" onclick="this.value='';" onfocus="this.select()" onblur="this.value=!this.value?'What are you doing?':this.value;" value="What are you doing?"/></li>
+		    	<li><input type="button" class="newEventAdd" onclick="addEntry()" value="ADD"/></li>
+	    	</ul>
+    	</div>
     </div>
     <div class="span15">
-    	<div class="timeLine">
+    	<div id="timeLine">
     		
     		
         

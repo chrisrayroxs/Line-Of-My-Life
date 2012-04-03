@@ -6,12 +6,6 @@
 body {
 	background:#eaf5ff;
 }
-.timeLine {
-	
-}
-input[type="button"], input[type="reset"], input[type="submit"] {
-    height: 30px;
-}
 .row {
     border-bottom:solid #ddd 1px;
     padding-bottom:20px;
@@ -25,6 +19,9 @@ input[type="button"], input[type="reset"], input[type="submit"] {
 	background: #C6E6F7;
 	border-radius:0 20px 20px 0;
 	padding:10px;
+}
+svg circle {
+	position: relative;
 }
 table {
 	
@@ -59,6 +56,33 @@ table td  {
 	min-width:60px;
 	height:30px;
 }
+#timeLine {
+	width:90%;
+	overflow:hidden;
+}
+#timelineOptions {
+	width:600px;
+	float:left;
+	margin:-40px 0 0 200px;
+}
+#timelineOptions li {
+	padding-left:20px;
+	list-style:none;
+	display:block;
+	float:left;
+}
+input {
+	height:26px;
+	font-size:22px;
+}
+input:hover {
+	background:#fff;
+	border:solid 1px #bfedfe;
+}
+input:active {
+	color:#b5b5b5;
+}
+
 #tabs {
 	background: #C6E6F7;
 }

@@ -311,8 +311,42 @@ function createDynamicTable(tbody, cols) {
   
 }
 
-$(document).ready(function() {
+$(document).ready(function set() {
 
+	var w = $("#timeLine").width()+200;
+	var h = $("#timeLine").width();
+	var paper = Raphael("timeLine", w, h);
+	var lifeline = paper.path("M" + 50 + " " + 50 + "L" + w + " " + 50);
+	var positionX = 50;
+	var positionY = 50; 
+	var interval = 5;
+		var rendering = setInterval(function() {
+			if(interval < 200){	    
+				var circle = paper.circle(positionX, positionY, 10);
+				circle.attr({stroke: "#DDD", "stroke-width": 4, fill: "#FFF"});
+				$("svg circle").mouseover(function(){
+					circle.attr({fill: "#000"});
+				});
+				$("svg circle").mouseleave(function(){
+					circle.attr({fill: "#fff"});
+				});
+				positionX += 50;
+				interval += 5;
+				$("svg").css({left: -interval});
+			}
+			else{
+				clearInterval( rendering );
+				set();
+				
+			}
+		}, 1000);
+		
+		
+	
+
+
+
+/*
 	var paper = Raphael("timeLine", 500, 500);
 	var path = paper.path("M10,20L30,40");
 	
@@ -340,5 +374,33 @@ $(document).ready(function() {
 		});
 		$(this).unbind('mousedown');
 	});
-
+*/
 });
+
+
+function addEntry() {
+	var currentTime = new Date();
+	
+	var today = new Date();
+	var dd = today.getDate();
+	var mm = today.getMonth()+1; //January is 0!
+	var yyyy = today.getFullYear();
+
+	var data = $(".newEvent").val();
+	console.log(" currentTime: " + currentTime + " data: " + data);
+	/*
+	var w = $(window).width()-349;
+	var h = $(window).height()-54;
+	var paper = Raphael("timeLine", w, h);
+	*/
+	var lifeline = paper.path("M" + 20 + " " + 20 + "L" + 50 + " " + 50);
+	var circle = paper.circle(50, 40, 10);
+	// Sets the fill attribute of the circle to red (#f00)
+	//circle.attr({stroke: "#DDD", stroke-width: 4, fill: "#FFF"});
+
+	/*
+	paper.path("M" + point1.x + " " + point1.y + "L" + point2.x + " " + point2.y);
+	var path = paper.path("M10,20L30,40");
+	*/
+
+}
