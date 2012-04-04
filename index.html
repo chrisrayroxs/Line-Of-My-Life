@@ -27,73 +27,85 @@
  
 </head>
 <body>
-<div class="row">
-    <div class="span3">
-    	  <h1>Events</h1>
-    	  <div class="buttons">
-		  <input type="text" style="width:92px;"  class="valueinput" id="numColumns" onclick="this.value='';" onfocus="this.select()" onblur="this.value=!this.value?'Columns':this.value;" value="Columns"/>
-          <input type="button" class="addtabletitle" onclick="createDynamicTable('table', document.getElementById('numColumns').value)" value="Create Table"/><br>
-		</div>
-    </div>
-    <div class="span16">
-    	
-        <table id="data">
-			<tfoot>
-				<tr>
-					<th class="eDate">1</th>
-					<th class="eDate">2</th>
-					<th class="eDate">3</th>
-					<th class="eDate">4</th>
-					<th class="eDate">5</th>
-					<th class="eDate">6</th>
-				</tr>
-			</tfoot>
-			<tbody>
-				<tr>
-					<td class="eDescription">ValuValueValuee</td>
-					<td class="eDescription">Value</td>
-					<td class="eDescription">ValValueue</td>
-					<td class="eDescription">ValValueValueValueue</td>
-					<td class="eDescription">Value</td>
-					<td class="eDescription">Value</td>
-				</tr>
-				<tr>
-					<td class="eValue">20</td>
-					<td class="eValue">20</td>
-					<td class="eValue">20</td>
-					<td class="eValue">20</td>
-					<td class="eValue">20</td>
-					<td class="eValue">20</td>
-				</tr>
-			</tbody>
-		</table> 
-		
+	<div id="header">
+		<div class="row">
+		    <div class="span3">
+		    	  <h1>Events</h1>
+		    	  <div class="buttons">
+				  <input type="text" style="width:92px;"  class="valueinput" id="numColumns" onclick="this.value='';" onfocus="this.select()" onblur="this.value=!this.value?'Columns':this.value;" value="Columns"/>
+		          <input type="button" class="addtabletitle" onclick="createDynamicTable('table', document.getElementById('numColumns').value)" value="Create Table"/><br>
+				</div>
+		    </div>
+		    <div class="span16">
+		    
+		        <table id="data">
+					<tfoot>
+						<tr>
+							<th class="eDate">1</th>
+							<th class="eDate">2</th>
+							<th class="eDate">3</th>
+							<th class="eDate">4</th>
+							<th class="eDate">5</th>
+							<th class="eDate">6</th>
+						</tr>
+					</tfoot>
+					<tbody>
+						<tr>
+							<td class="eDescription">ValuValueValuee</td>
+							<td class="eDescription">Value</td>
+							<td class="eDescription">ValValueue</td>
+							<td class="eDescription">ValValueValueValueue</td>
+							<td class="eDescription">Value</td>
+							<td class="eDescription">Value</td>
+						</tr>
+						<tr>
+							<td class="eValue">20</td>
+							<td class="eValue">20</td>
+							<td class="eValue">20</td>
+							<td class="eValue">20</td>
+							<td class="eValue">20</td>
+							<td class="eValue">20</td>
+						</tr>
+					</tbody>
+				</table> 
+			
+			</div>
+		  </div>
 	</div>
-   </div>
 		
-<div class="container-fluid">
-<div class="row-fluid">
-    <div class="span3">
-    	 <h1>Timeline</h1>
-    	 <div id="timelineOptions">
-    	 	<ul>
-				<li><input type="button" class="plot" onclick="createTimeline()" value="Plot Lifeline"/></li>
-		    	<li><input type="text" class="newEvent" onclick="this.value='';" onfocus="this.select()" onblur="this.value=!this.value?'What are you doing?':this.value;" value="What are you doing?"/></li>
-		    	<li><input type="button" class="newEventAdd" onclick="addEntry()" value="ADD"/></li>
-	    	</ul>
-    	</div>
-    </div>
-    <div class="span15">
-    	<div id="timeLine">
-    		
-    		
-        
-        <div id="holder"></div>
-    		
-    	</div>
-    </div>
-</div>
-</div>
+		<div id="wrapper">
+		    <div class="span3">
+		    	 <h1>Timeline</h1>
+		    	 <div id="timelineOptions">
+		    	 	<ul>
+						<li><input type="button" class="plot" onclick="createTimeline()" value="Plot Lifeline"/></li>
+				    	<li><input type="text" class="newEvent" onclick="this.value='';" onfocus="this.select()" onblur="this.value=!this.value?'What are you doing?':this.value;" value="What are you doing?"/></li>
+				    	<li><input type="button" class="newEventAdd" onclick="addEntry()" value="ADD"/></li>
+			    	</ul>
+		    	</div>
+		    </div>
+		    <div class="span15">
+		    	<div id="timeLine">
+		    		
+		    		
+		        
+		        <div id="holder"></div>
+		    		<div id="time">
+		            <span id="h"></span>:<span id="m"></span>:<span id="s"></span> <span id="ampm"></span> · <span id="d"></span>/<span id="mnth"></span>
+		        </div>
+		    	</div>
+		    </div>
+		</div>
+	<div id="footer_wrapper">
+            <div id="footer">
+                <div id="footer_links">
+                    <a href="http://raphaeljs.com">Raphaeljs</a>	<a href="http://github.com/chrisrayroxs/Line-Of-My-Life">Github</a> <a href="#">About</a>
+                </div>
+                <div id="footer_credits">
+                    Design and code by <a href="http://www.reynoldschristopher.com">Christopher Reynolds</a>
+                </div>
+            </div>
+        </div>
 
 </body>
 </html>

@@ -313,26 +313,137 @@ function createDynamicTable(tbody, cols) {
 
 $(document).ready(function set() {
 
-	var w = $("#timeLine").width()+200;
-	var h = $("#timeLine").width();
-	var paper = Raphael("timeLine", w, h);
-	var lifeline = paper.path("M" + 50 + " " + 50 + "L" + w + " " + 50);
+	var w = $(window).width();
+	var h = $(window).height();
+	var r = Raphael("timeLine", w, h);
+        R = 200,
+        init = true,
+        param = {stroke: "#fff", "stroke-width": 30},
+        hash = document.location.hash,
+        marksAttr = {fill: hash || "#444", stroke: "none"},
+        html = [
+            document.getElementById("h"),
+            document.getElementById("m"),
+            document.getElementById("s"),
+            document.getElementById("d"),
+            document.getElementById("mnth"),
+            document.getElementById("ampm")
+        ];
+    // Custom Attribute
+    r.customAttributes.arc = function (value, total, R) {
+        var alpha = 360 / total * value,
+            a = (90 - alpha) * Math.PI / 180,
+            x = 300 + R * Math.cos(a),
+            y = 300 - R * Math.sin(a),
+            color = "hsb(".concat(Math.round(R) / 200, ",", value / total, ", .75)"),
+            path;
+        if (total == value) {
+            path = [["M", 300, 300 - R], ["A", R, R, 0, 1, 1, 299.99, 300 - R]];
+        } else {
+            path = [["M", 300, 300 - R], ["A", R, R, 0, +(alpha > 180), 1, x, y]];
+        }
+        return {path: path, stroke: color};
+    };
+
+    drawMarks(R, 60);
+    var sec = r.path().attr(param).attr({arc: [0, 60, R]});
+    R -= 40;
+    //drawMarks(R, 60);
+    var min = r.path().attr(param).attr({arc: [0, 60, R]});
+    R -= 40;
+    //drawMarks(R, 12);
+    var hor = r.path().attr(param).attr({arc: [0, 12, R]});
+    R -= 40;
+    //drawMarks(R, 31);
+    var day = r.path().attr(param).attr({arc: [0, 31, R]});
+    R -= 40;
+    drawMarks(R, 12);
+    var mon = r.path().attr(param).attr({arc: [0, 12, R]});
+    var pm = r.circle(300, 300, 16).attr({stroke: "none", fill: Raphael.hsb2rgb(15 / 200, 1, .75).hex});
+    html[5].style.color = Raphael.hsb2rgb(15 / 200, 1, .75).hex;
+
+    function updateVal(value, total, R, hand, id) {
+        if (total == 31) { // month
+            var d = new Date;
+            d.setDate(1);
+            d.setMonth(d.getMonth() + 1);
+            d.setDate(-1);
+            total = d.getDate();
+        }
+        var color = "hsb(".concat(Math.round(R) / 200, ",", value / total, ", .75)");
+        if (init) {
+            hand.animate({arc: [value, total, R]}, 900, ">");
+        } else {
+            if (!value || value == total) {
+                value = total;
+                hand.animate({arc: [value, total, R]}, 750, "bounce", function () {
+                    hand.attr({arc: [0, total, R]});
+                });
+            } else {
+                hand.animate({arc: [value, total, R]}, 750, "elastic");
+            }
+        }
+        html[id].innerHTML = (value < 10 ? "0" : "") + value;
+        html[id].style.color = Raphael.getRGB(color).hex;
+    }
+
+    function drawMarks(R, total) {
+        if (total == 31) { // month
+            var d = new Date;
+            d.setDate(1);
+            d.setMonth(d.getMonth() + 1);
+            d.setDate(-1);
+            total = d.getDate();
+        }
+        var color = "hsb(".concat(Math.round(R) / 200, ", 1, .75)"),
+            out = r.set();
+        for (var value = 0; value < total; value++) {
+            var alpha = 360 / total * value,
+                a = (90 - alpha) * Math.PI / 180,
+                x = 300 + R * Math.cos(a),
+                y = 300 - R * Math.sin(a);
+            out.push(r.circle(x, y, 2).attr(marksAttr));
+        }
+        return out;
+    }
+
+    (function () {
+        var d = new Date,
+            am = (d.getHours() < 12),
+            h = d.getHours() % 12 || 12;
+            
+        updateVal(d.getSeconds(), 60, 200, sec, 2);
+        //updateVal(d.getMinutes(), 60, 160, min, 1);
+        //updateVal(h, 12, 120, hor, 0);
+        //updateVal(d.getDate(), 31, 80, day, 3);
+        //updateVal(d.getMonth() + 1, 12, 40, mon, 4);
+        //pm[(am ? "hide" : "show")]();
+        //html[5].innerHTML = am ? "AM" : "PM";
+        setTimeout(arguments.callee, 1000);
+        init = false;
+    })();
+	
+/*	var paper = Raphael("timeLine", w, h);
+	//var lifeline = paper.circle(w/2, h/2.5, w/6);
+	path = [["M", 20, 20], ["L", 40, 40], ["M", 50, 50], ["L", 60, 60]];
+	path2 = "M100 100 a50 50 1 1 0 0.00001 0";
+	path3 = "M100 100 C100 100 200 200 270 260";
+	var lifeline = paper.path(path3);
+	
+	lifeline .attr({stroke: "#000", "stroke-width": 4, fill: "#FFF"});
+	console.log("w: " + w/2 + " h: "+ h);
+	//var lifeline = paper.path("M" + 50 + " " + 50 + "L" + w + " " + 50);
 	var positionX = 50;
 	var positionY = 50; 
-	var interval = 5;
-		var rendering = setInterval(function() {
+	var interval = 5; */
+	/*	var rendering = setInterval(function() {
 			if(interval < 200){	    
 				var circle = paper.circle(positionX, positionY, 10);
 				circle.attr({stroke: "#DDD", "stroke-width": 4, fill: "#FFF"});
-				$("svg circle").mouseover(function(){
-					circle.attr({fill: "#000"});
-				});
-				$("svg circle").mouseleave(function(){
-					circle.attr({fill: "#fff"});
-				});
+
 				positionX += 50;
 				interval += 5;
-				$("svg").css({left: -interval});
+				//$("svg").css({left: -interval});
 			}
 			else{
 				clearInterval( rendering );
@@ -340,47 +451,11 @@ $(document).ready(function set() {
 				
 			}
 		}, 1000);
-		
-		
-	
-
-
-
-/*
-	var paper = Raphael("timeLine", 500, 500);
-	var path = paper.path("M10,20L30,40");
-	
-   $(".timeLine").mousedown(function(e){
-   	var n = 0;
-   	console.log("we have touchdown");
-    var X1 = (e.pageX - this.offsetLeft) - 8;
-    var Y1 = (e.pageY - this.offsetTop) - 8;
-    var X12 = (e.pageX) - 8;
-    var Y12 = (e.pageY) - 8;
-   
-    $(this).mouseup(function(e){
-    	console.log("we have liftoff");
-        var X2 = (e.pageX - this.offsetLeft) - 8;
-        var Y2 = (e.pageY - this.offsetTop) - 8;
-        $(this).unbind('mouseup');
-       	width = X2 - X1;
-       	height = Y2 - Y1;		
-		var paper = Raphael(X1, Y1, width, width);
-		var stringPath = "M" + 0 + " " + 0 + "L" + width + " " + height;
-		var path = paper.path(stringPath);
-		  $('svg').draggable({ containment: "#canvas" });
-		  $('.timeLine svg').attr('class', 'svgDrawingObject').css('position', 'absolute').css('left', X12).css('top', Y12);
-
-		});
-		$(this).unbind('mousedown');
-	});
 */
 });
 
-
 function addEntry() {
 	var currentTime = new Date();
-	
 	var today = new Date();
 	var dd = today.getDate();
 	var mm = today.getMonth()+1; //January is 0!
@@ -388,19 +463,6 @@ function addEntry() {
 
 	var data = $(".newEvent").val();
 	console.log(" currentTime: " + currentTime + " data: " + data);
-	/*
-	var w = $(window).width()-349;
-	var h = $(window).height()-54;
-	var paper = Raphael("timeLine", w, h);
-	*/
-	var lifeline = paper.path("M" + 20 + " " + 20 + "L" + 50 + " " + 50);
-	var circle = paper.circle(50, 40, 10);
-	// Sets the fill attribute of the circle to red (#f00)
-	//circle.attr({stroke: "#DDD", stroke-width: 4, fill: "#FFF"});
-
-	/*
-	paper.path("M" + point1.x + " " + point1.y + "L" + point2.x + " " + point2.y);
-	var path = paper.path("M10,20L30,40");
-	*/
-
 }
+
+
