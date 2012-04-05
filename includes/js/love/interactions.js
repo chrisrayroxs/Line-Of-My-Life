@@ -315,7 +315,7 @@ $(document).ready(function set() {
 
 	var w = $(window).width();
 	var h = $(window).height();
-	var r = Raphael("timeLine", w, h);
+	var r = Raphael("timeLine", w, h),
         R = 200,
         init = true,
         param = {stroke: "#fff", "stroke-width": 30},
@@ -329,13 +329,20 @@ $(document).ready(function set() {
             document.getElementById("mnth"),
             document.getElementById("ampm")
         ];
+        var clockOuterLining = r.circle(300, 300, 200);
+		clockOuterLining.attr({stroke: "#ddd", "stroke-width": 30, fill: "#FFF"});
+	    var clockShell = r.circle(300, 300, 217);
+		clockShell.attr({stroke: "#99ACBD", "stroke-width": 4});
+	    var clockInnerLining = r.circle(300, 300, 183);
+		clockInnerLining.attr({stroke: "#99ACBD", "stroke-width": 4});
+	    
     // Custom Attribute
     r.customAttributes.arc = function (value, total, R) {
         var alpha = 360 / total * value,
             a = (90 - alpha) * Math.PI / 180,
             x = 300 + R * Math.cos(a),
             y = 300 - R * Math.sin(a),
-            color = "hsb(".concat(Math.round(R) / 200, ",", value / total, ", .75)"),
+            color = "hsb(".concat(Math.round(R) / 300, ",", value / total, ", .75)"),
             path;
         if (total == value) {
             path = [["M", 300, 300 - R], ["A", R, R, 0, 1, 1, 299.99, 300 - R]];
@@ -378,9 +385,10 @@ $(document).ready(function set() {
                 value = total;
                 hand.animate({arc: [value, total, R]}, 750, "bounce", function () {
                     hand.attr({arc: [0, total, R]});
+                    offset = 200;
                 });
             } else {
-                hand.animate({arc: [value, total, R]}, 750, "elastic");
+                hand.animate({arc: [value, total, R]}, 750, "bounce");
             }
         }
         html[id].innerHTML = (value < 10 ? "0" : "") + value;
@@ -406,19 +414,19 @@ $(document).ready(function set() {
         }
         return out;
     }
-
     (function () {
         var d = new Date,
             am = (d.getHours() < 12),
             h = d.getHours() % 12 || 12;
-            
         updateVal(d.getSeconds(), 60, 200, sec, 2);
-        //updateVal(d.getMinutes(), 60, 160, min, 1);
-        //updateVal(h, 12, 120, hor, 0);
-        //updateVal(d.getDate(), 31, 80, day, 3);
-        //updateVal(d.getMonth() + 1, 12, 40, mon, 4);
-        //pm[(am ? "hide" : "show")]();
-        //html[5].innerHTML = am ? "AM" : "PM";
+        /*
+        updateVal(d.getMinutes(), 60, 160, min, 1);
+        updateVal(h, 12, 120, hor, 0);
+        updateVal(d.getDate(), 31, 80, day, 3);
+        updateVal(d.getMonth() + 1, 12, 40, mon, 4);
+        pm[(am ? "hide" : "show")]();
+        html[5].innerHTML = am ? "AM" : "PM";
+        */
         setTimeout(arguments.callee, 1000);
         init = false;
     })();
